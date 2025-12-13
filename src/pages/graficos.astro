@@ -27,7 +27,7 @@ const transactions = [
 ];
 ---
 
-<Layout title="Dashboard | Maserati">
+<Layout title="Gráficos | Maserati">
     <section class="relative min-h-screen pt-36 pb-20 overflow-hidden bg-maserati-negro">
         
         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-maserati-azul/5 rounded-full blur-[120px] pointer-events-none"></div>
@@ -122,8 +122,8 @@ const transactions = [
                                         <td class="py-4 text-right">
                                             <span class={`px-2 py-1 rounded text-[10px] font-bold uppercase border 
                                                 ${tx.status === 'Completado' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 
-                                                  tx.status === 'Pendiente' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 
-                                                  'bg-red-500/10 text-red-400 border-red-500/20'}`}>
+                                                    tx.status === 'Pendiente' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 
+                                                    'bg-red-500/10 text-red-400 border-red-500/20'}`}>
                                                 {tx.status}
                                             </span>
                                         </td>
@@ -148,7 +148,7 @@ const transactions = [
 
         gsap.context(() => {
             
-            // 1. HEADER
+            
             gsap.to(".header-animate", {
                 opacity: 1,
                 y: 0,
@@ -156,7 +156,7 @@ const transactions = [
                 ease: "power2.out"
             });
 
-            // 2. APARICIÓN DE CARDS
+            
             gsap.to(".dashboard-card", {
                 scrollTrigger: {
                     trigger: ".dashboard-card",
@@ -169,19 +169,21 @@ const transactions = [
                 ease: "power2.out"
             });
 
-            // 3. ANIMACIÓN DE LAS BARRAS
-            // Recorremos cada barra para leer su altura final
             const bars = gsap.utils.toArray(".bar-animate");
             
-            bars.forEach((bar: any) => {
-                const h = bar.getAttribute("data-height");
+            
+            bars.forEach((item) => {
+                
+                const bar = item as HTMLElement; 
+
+                const h = bar.getAttribute("data-height") || "0%";
                 
                 gsap.to(bar, {
                     scrollTrigger: {
                         trigger: bar, 
                         start: "top 95%" 
                     },
-                    height: h, // Anima la propiedad height CSS
+                    height: h, 
                     duration: 1.5,
                     ease: "power3.out",
                     delay: 0.2
