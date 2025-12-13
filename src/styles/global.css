@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+@theme {
+    --color-maserati-negro: #0b0c10;
+    --color-maserati-gris: #1f2833;
+    --color-maserati-blanco: #ffffff;
+    --color-maserati-plata: #c5c6c7;
+    --color-maserati-azul: #1f4068;
+    --color-maserati-cian: #45a29e;
+    --color-maserati-amber: #f5e027;
+}

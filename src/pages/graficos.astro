@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+
+// 1. DATOS (KPIs y Gráfica)
+const kpis = [
+    { label: "Entradas vendidas hoy", value: "124", icon: "ticket", change: "+12%", color: "text-maserati-azul" },
+    { label: "Ingresos Totales", value: "€ 45,200", icon: "money", change: "+8.5%", color: "text-emerald-400" },
+    { label: "Usuarios Activos", value: "1,850", icon: "users", change: "+24%", color: "text-maserati-amber" },
+];
+
+const chartData = [
+    { day: "Lun", value: 40, label: "40%" },
+    { day: "Mar", value: 65, label: "65%" },
+    { day: "Mié", value: 45, label: "45%" },
+    { day: "Jue", value: 85, label: "85%" },
+    { day: "Vie", value: 55, label: "55%" },
+    { day: "Sáb", value: 95, label: "95%" },
+    { day: "Dom", value: 70, label: "70%" },
+];
+
+const transactions = [
+    { id: "#TRX-9821", user: "Ana García", type: "VIP Pass", date: "Hace 5 min", status: "Completado" },
+    { id: "#TRX-9822", user: "Jean Pierre", type: "General", date: "Hace 12 min", status: "Pendiente" },
+    { id: "#TRX-9823", user: "Mike Smith", type: "General", date: "Hace 24 min", status: "Completado" },
+    { id: "#TRX-9824", user: "Laura V.", type: "VIP Pass", date: "Hace 1 hora", status: "Fallido" },
+];
+---
+
+<Layout title="Dashboard | Maserati">
+    <section class="relative min-h-screen pt-36 pb-20 overflow-hidden bg-maserati-negro">
+        
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-maserati-azul/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative z-10 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            
+            <div class="mb-16 text-center opacity-0 header-animate translate-y-4">
+                <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">
+                    Panel de <span class="text-transparent bg-clip-text bg-linear-to-r from-maserati-azul to-maserati-amber">Administración</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-lg text-maserati-plata">
+                    Visión general de las métricas clave y el estado del evento en tiempo real.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 mb-8 md:grid-cols-3">
+                {kpis.map((kpi) => (
+                    <div class="relative p-6 transition-colors border opacity-0 bg-maserati-gris/20 border-white/5 rounded-xl group hover:border-maserati-azul/30 dashboard-card translate-y-4">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="p-3 text-white transition-colors rounded-lg bg-white/5 group-hover:bg-maserati-amber group-hover:text-black">
+                                {kpi.icon === 'ticket' && (
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" />
+                                    </svg>
+                                )}
+                                {kpi.icon === 'money' && (
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                )}
+                                {kpi.icon === 'users' && (
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                    </svg>
+                                )}
+                            </div>
+                            <span class="text-xs font-bold text-green-400 bg-green-400/10 px-2 py-1 rounded-full border border-green-400/20">
+                                {kpi.change}
+                            </span>
+                        </div>
+                        <h3 class="mb-1 text-sm tracking-wider uppercase text-maserati-plata">{kpi.label}</h3>
+                        <p class={`text-3xl font-bold ${kpi.color}`}>{kpi.value}</p>
+                    </div>
+                ))}
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                
+                <div class="p-6 border opacity-0 lg:col-span-2 bg-maserati-gris/10 border-white/5 rounded-xl dashboard-card translate-y-4">
+                    <div class="flex items-center justify-between mb-8">
+                        <h3 class="text-lg font-bold text-white">Ventas Semanales</h3>
+                        <button class="text-xs transition-colors text-maserati-azul hover:text-white">Ver reporte completo</button>
+                    </div>
+                    
+                    <div class="flex items-end justify-between gap-2 h-64 sm:gap-4">
+                        {chartData.map((bar) => (
+                            <div class="flex flex-col items-center w-full gap-2 cursor-pointer group h-full justify-end">
+                                <div class="absolute px-2 py-1 mb-2 text-xs font-bold text-black transition-opacity opacity-0 bg-white rounded -mt-8 group-hover:opacity-100">
+                                    {bar.label}
+                                </div>
+                                <div class="w-full h-full bg-white/5 rounded-t-sm relative flex items-end hover:bg-white/10 transition-colors overflow-hidden">
+                                    <div 
+                                        class="w-full bg-linear-to-t from-maserati-cian to-maserati-amber bar-animate origin-bottom" 
+                                        style="height: 0%" 
+                                        data-height={`${bar.value}%`}
+                                    ></div>
+                                </div>
+                                <span class="font-mono text-xs text-maserati-plata">{bar.day}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div class="p-6 border opacity-0 bg-maserati-gris/10 border-white/5 rounded-xl dashboard-card translate-y-4">
+                    <h3 class="mb-6 text-lg font-bold text-white">Transacciones Recientes</h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-xs border-b text-maserati-plata border-white/10">
+                                    <th class="pb-3 font-medium tracking-wider uppercase">Usuario</th>
+                                    <th class="pb-3 font-medium tracking-wider text-right uppercase">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                {transactions.map((tx) => (
+                                    <tr class="transition-colors border-b border-white/5 last:border-0 hover:bg-white/5 group">
+                                        <td class="py-4">
+                                            <p class="font-medium text-white transition-colors group-hover:text-maserati-azul">{tx.user}</p>
+                                            <p class="text-xs text-white/40">{tx.type} • {tx.date}</p>
+                                        </td>
+                                        <td class="py-4 text-right">
+                                            <span class={`px-2 py-1 rounded text-[10px] font-bold uppercase border 
+                                                ${tx.status === 'Completado' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 
+                                                  tx.status === 'Pendiente' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 
+                                                  'bg-red-500/10 text-red-400 border-red-500/20'}`}>
+                                                {tx.status}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.context(() => {
+            
+            // 1. HEADER
+            gsap.to(".header-animate", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+
+            // 2. APARICIÓN DE CARDS
+            gsap.to(".dashboard-card", {
+                scrollTrigger: {
+                    trigger: ".dashboard-card",
+                    start: "top 85%"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+
+            // 3. ANIMACIÓN DE LAS BARRAS
+            // Recorremos cada barra para leer su altura final
+            const bars = gsap.utils.toArray(".bar-animate");
+            
+            bars.forEach((bar: any) => {
+                const h = bar.getAttribute("data-height");
+                
+                gsap.to(bar, {
+                    scrollTrigger: {
+                        trigger: bar, 
+                        start: "top 95%" 
+                    },
+                    height: h, // Anima la propiedad height CSS
+                    duration: 1.5,
+                    ease: "power3.out",
+                    delay: 0.2
+                });
+            });
+        });
+    });
+</script>

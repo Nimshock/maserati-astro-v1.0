@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+---
+
+<section class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-maserati-negro">
+    
+    <div class="absolute inset-0 z-0">
+        <video
+            src="/assets/videos/gt-110-anniversary-hero-video.mp4"
+            class="w-full h-full object-cover opacity-60"
+            id="hero-bg"
+            autoplay
+            loop
+            muted
+            playsinline
+        ></video>
+        <div class="absolute inset-0 bg-linear-to-t from-maserati-negro via-maserati-negro/40 to-transparent"></div>
+    </div>
+
+    <div class="relative z-10 container mx-auto px-6 md:px-12 2xl:px-24 2xl:max-w-[2600px] flex flex-col md:flex-row items-center h-full">
+        
+        <div class="hidden md:block md:w-1/2"></div>
+
+        <div class="w-full md:w-1/2 2xl:w-2/5 space-y-8 text-center md:text-right flex flex-col md:items-end justify-center h-full pb-20 2xl:pb-32">
+            
+            <h2 id="hero-title" class="text-5xl md:text-7xl font-bold text-maserati-blanco tracking-tight leading-none opacity-0 translate-y-10">
+                110 Años de <br />
+                <span class="text-maserati-azul">Pura Pasión</span>
+            </h2>
+            
+            <p id="hero-text" class="text-lg md:text-xl 2xl:text-lg text-maserati-plata max-w-lg 2xl:max-w-md opacity-0 translate-y-10 leading-relaxed ml-auto">
+                Una experiencia de conducción sin igual.
+                Imagina el rugido de un motor que combina la precisión italiana con clase mundial. 
+                Maserati no es sólo un coche.
+            </p>
+
+            <div id="hero-btn" class="pt-4 opacity-0 translate-y-10">
+                <a
+                    href="https://www.maserati.com/es/es"
+                    target="_blank"
+                    class="inline-block bg-maserati-azul text-white font-semibold py-4 px-10 rounded-sm uppercase tracking-widest transition-all duration-300 hover:bg-maserati-cian hover:shadow-[0_0_20px_rgba(69,162,158,0.4)]"
+                >
+                    Descubrir Más
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+        <svg class="w-6 h-6 text-maserati-plata opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7-7-7"></path>
+        </svg>
+    </div>
+</section>
+
+<script>
+    import { gsap } from "gsap";
+    
+    document.addEventListener("DOMContentLoaded", () => {
+        const tl = gsap.timeline();
+
+        tl.to("#hero-title", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "+=0.5")
+        .to("#hero-text", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "-=0.8")
+        .to("#hero-btn", { opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" }, "-=0.8");
+    });
+</script>

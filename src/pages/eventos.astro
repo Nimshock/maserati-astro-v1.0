@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EventCard from '../components/EventCard.jsx';
+import { events } from '../data/events.js';
+
+
+const title = "Eventos Exclusivos | Maserati";
+---
+
+<Layout title={title}>
+    <div class="bg-maserati-negro pt-32 pb-12 px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-maserati-blanco mb-4 tracking-tight">
+            Experiencias <span class="text-maserati-amber">Tridente</span>
+        </h1>
+        <p class="text-maserati-plata max-w-2xl mx-auto text-lg">
+            Accede a eventos exclusivos, pruebas en circuito y lanzamientos privados.
+            Plazas limitadas.
+        </p>
+    </div>
+
+    <section class="bg-maserati-negro pb-24 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {events.map((event) => (
+                
+                <EventCard 
+                    client:load 
+                    id={event.id}
+                    title={event.title}
+                    date={event.date}
+                    location={event.location}
+                    image={event.image}
+                    price={event.price}
+                    initialStock={event.stock}
+                    description={event.description}
+                />
+            ))}
+
+        </div>
+    </section>
+</Layout>

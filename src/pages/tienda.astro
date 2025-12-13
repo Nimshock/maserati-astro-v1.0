@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductGrid from '../components/ProductGrid';
+
+const title = "Tienda Maserati | Colección Oficial";
+---
+
+<Layout title={title}>
+    <div class="bg-maserati-negro pt-32 pb-12 px-6 text-center relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold text-maserati-blanco mb-4 tracking-tight">
+            Tienda <span class="text-maserati-amber">Maserati</span>
+        </h1>
+        <p class="text-maserati-plata max-w-2xl mx-auto text-lg">
+            Lleva la elegancia del Tridente contigo. Ropa, accesorios y coleccionables exclusivos.
+        </p>
+    </div>
+
+    <section class="bg-maserati-negro pb-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            
+            <ProductGrid client:load />
+
+        </div>
+    </section>
+</Layout>

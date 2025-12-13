@@ -1,0 +1,84 @@
+---
+import '../styles/global.css';
+
+const features = [
+    {
+        title: "Lujo",
+        description: "Maserati es el símbolo perfecto del lujo y la elegancia sobre ruedas.",
+        image: "/public/assets/images/caracteristicas/maseratiLujo.png", 
+    },
+    {
+        title: "Innovación",
+        description: "Maserati fusiona lujo e innovación, ofreciendo coches que redefinen la experiencia.",
+        image: "/public/assets/images/caracteristicas/maseratiInnovacion.png", 
+    },
+    {
+        title: "Rendimiento",
+        description: "Combina prestaciones excepcionales con el lujo, creando coches de gran potencia.",
+        image: "/public/assets/images/caracteristicas/maseratiRendimiento.png",
+    }
+];
+---
+
+<section class="bg-maserati-negro py-24 relative z-20">
+    <div class="container mx-auto px-6 text-center">
+        
+        <h2 class="text-4xl md:text-5xl font-bold text-maserati-blanco mb-4 tracking-tight">
+        Nuestras Características
+        </h2>
+        <p class="text-maserati-plata max-w-2xl mx-auto mb-16 text-lg">
+        Combinando lujo, innovación y rendimiento para crear vehículos exclusivos.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        {features.map((feature) => (
+            <div class="group flex flex-col items-center">
+            
+            <div class="relative w-64 h-64 rounded-full overflow-hidden border-4 border-maserati-gris shadow-2xl transition-all duration-500 group-hover:border-maserati-azul group-hover:shadow-[0_0_30px_rgba(31,64,104,0.3)]">
+                <img 
+                src={feature.image} 
+                alt={feature.title} 
+                class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+            </div>
+
+            <h3 class="text-2xl font-bold text-maserati-blanco mt-8 mb-3 group-hover:text-maserati-amber transition-colors">
+                {feature.title}
+            </h3>
+            <p class="text-maserati-plata leading-relaxed max-w-xs mx-auto">
+                {feature.description}
+            </p>
+            </div>
+        ))}
+        </div>
+
+    </div>
+    </section>
+
+<script>
+
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    
+    gsap.registerPlugin(ScrollTrigger);
+
+    
+    const elements = document.querySelectorAll('.scroll-animate');
+
+    elements.forEach((el) => {
+        gsap.fromTo(el, 
+            { opacity: 0, y: 50 }, // Estado inicial
+            { 
+                opacity: 1, 
+                y: 0, 
+                duration: 1, 
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 80%", 
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+    });
+</script>
