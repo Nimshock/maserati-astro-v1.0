@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Declaración de Accesibilidad | Maserati";
+---
+
+<Layout title={title}>
+    <div class="bg-white text-black pt-32 pb-24 min-h-screen relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            
+            <h1 class="text-4xl font-bold mb-2 text-maserati-negro">Declaración de accesibilidad</h1>
+            <p class="text-sm text-gray-500 mb-8">Esta declaración fue creada el 18/08/2025</p>
+
+            <div class="prose max-w-none space-y-6 text-gray-800">
+                <section>
+                    <h2 class="text-2xl font-bold mb-4 border-b border-gray-200 pb-2">Declaración de accesibilidad para el sitio web</h2>
+                    <p>
+                        Esta declaración de accesibilidad se aplica a <a href="https://www.maserati.com/" class="text-maserati-azul underline">https://www.maserati.com/</a>
+                    </p>
+                    <p>
+                        Este sitio web es gestionado por <strong>Maserati S.p.A.</strong> Queremos que tantas personas como sea posible puedan utilizar este sitio web.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4 border-b border-gray-200 pb-2">Comentarios e información de contacto</h2>
+                    <p>
+                        Siempre buscamos mejorar la accesibilidad de este sitio web. Si encuentra algún problema, por favor contáctenos a través del correo electrónico <a href="mailto:webcompliance@maserati.com" class="text-maserati-azul underline">webcompliance@maserati.com</a>
+                    </p>
+                    <p>
+                        Consideraremos su solicitud y le responderemos en <strong>15 días</strong>.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold mb-4 border-b border-gray-200 pb-2">Información técnica sobre la accesibilidad de este sitio web</h2>
+                    <p>
+                        Nos comprometemos a hacer accesible nuestro sitio web, de conformidad también con las Regulaciones de Accesibilidad de los Organismos del Sector Público (Sitios Web y Aplicaciones Móviles) (No. 2) de 2018.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-xl font-bold mb-3">Estado de cumplimiento</h3>
+                    <p>
+                        Este sitio web es <strong>parcialmente conforme</strong> con la norma EN 301 549 “Requisitos de accesibilidad para productos y servicios TIC”, el Estándar Europeo y las Pautas de Accesibilidad al Contenido en la Web (WCAG) versión 2.2 nivel AA.
+                    </p>
+                </section>
+
+                <section>
+                    <h3 class="text-xl font-bold mb-4 mt-8 text-red-700">Incumplimiento de las regulaciones de accesibilidad</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <ul class="space-y-4 text-sm">
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.1.1</strong> - No todo el contenido no textual presentado al usuario tiene una alternativa textual que sirva para un propósito equivalente.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.2.1</strong> - En algunos medios pregrabados de solo audio o solo video, no se proporciona información equivalente en un formato alternativo.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.2.2</strong> - Parte del contenido de audio pregrabado carece de subtítulos sincronizados.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.2.3</strong> - Para algunos elementos multimedia pregrabados, no se proporciona una alternativa o descripción de audio.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.2.5</strong> - Para algunos contenidos de video pregrabados, no se proporciona descripción de audio.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.3.1</strong> - En algunos casos, la información, estructura o correlaciones transmitidas por la presentación de las páginas no pueden determinarse programáticamente (o no están disponibles a través de texto).
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.3.5</strong> - El propósito de ciertos campos de entrada que aceptan datos específicos no se comunica correctamente a las tecnologías de asistencia o no se ha implementado correctamente.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.4.2</strong> - Dentro de una o más páginas, el audio comienza y dura más de 3 segundos sin un mecanismo específico para pausarlo.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.4.3</strong> - Donde no está permitido, la representación visual de texto e imágenes que contienen texto no siempre tiene la relación de contraste mínima requerida ***.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.4.4</strong> - Algunos textos, excepto subtítulos e imágenes que contienen texto, no pueden redimensionarse hasta un 200 por ciento sin usar tecnologías de asistencia y sin perder contenido y funcionalidad.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.4.10</strong> - El contenido que no requiere una representación en dos dimensiones (como tablas de datos o mapas) no se reorganiza al cambiar el tamaño.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.4.11</strong> - Para algunos componentes esenciales, incluso en diferentes estados, el contraste de color en comparación con los elementos adyacentes no supera la relación de 3:1.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.1.4.13</strong> - En algunos casos, cuando el puntero del ratón (hover) o el foco del teclado hacen visible y oculto el contenido, no hay un mecanismo disponible para ocultar contenido adicional sin mover el puntero o el foco, el puntero no puede moverse al contenido adicional sin desaparecer, o el contenido adicional permanece visible hasta que se elimina el evento de hover o foco, el usuario lo elimina o su información ya no es válida, salvo algunas excepciones.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.2.1.1</strong> - Algunas características no pueden activarse mediante teclado (o interfaz de entrada similar).
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.2.2.2</strong> - Algunas animaciones, parpadeos, deslizamientos o actualizaciones automáticas de información iniciadas automáticamente, con una duración de más de cinco segundos o presentadas en paralelo con otro contenido, no tienen mecanismos para detenerlas u ocultarlas.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.2.4.1</strong> - No existe un mecanismo para saltar bloques de contenido que se repiten en múltiples páginas web.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.2.4.3</strong> - En algunas páginas web que pueden navegarse secuencialmente y en las que la secuencia de navegación afecta su significado y funcionamiento, algunos objetos que pueden recibir el foco no lo reciben con un orden que preserve el significado y la operación del mismo.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.2.4.4</strong> - El propósito de ciertos enlaces no puede determinarse por el texto del enlace o por el texto del enlace junto con el contenido adyacente.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.2.4.6</strong> - Los encabezados y/o etiquetas no aclaran suficientemente el contenido o la funcionalidad.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.2.4.7</strong> - En algunos elementos interactivos, el indicador de foco no es visible.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.2.5.3</strong> - Para algunos componentes de interfaz de usuario con etiquetas que incluyen texto o imágenes de texto, el nombre leído por la tecnología de asistencia no contiene el texto que se presenta visualmente.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.3.3.1</strong> - En algunos casos, cuando se detecta automáticamente un error de entrada, el elemento erróneo no se identifica y/o el error no se describe mediante texto.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.3.3.2</strong> - En algunos casos no se proporcionan etiquetas o instrucciones cuando el contenido requiere acciones de entrada por parte del usuario.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.4.1.2</strong> - En algunos casos, los componentes de interfaz de usuario (incluyendo: elementos de módulo, enlaces generados por script y componentes), nombre, rol, estado, propiedad y valores son incorrectos o están establecidos, o no se advierte a la tecnología de asistencia del usuario cuando estos atributos cambian.
+                            </li>
+                            <li class="pl-4 border-l-4 border-maserati-azul">
+                                <strong>C.9.4.1.3</strong> - En algunos casos, los mensajes de estado no se presentan al usuario para que la tecnología de asistencia los interprete sin tener que mover el foco.
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</Layout>

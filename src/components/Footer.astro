@@ -19,16 +19,16 @@ const currentYear = new Date().getFullYear();
                 
                 <div class="flex gap-6 items-center mt-6">
                     <a href="https://instagram.com" target="_blank" class="transition-transform duration-300 hover:scale-110 opacity-70 hover:opacity-100">
-                        <img src="/assets/svg/instagram.svg" alt="Instagram" class="w-6 h-6 object-contain" />
+                        <img src="/assets/svg/instagram.svg" alt="IG" class="w-6 h-6 object-contain" />
                     </a>
                     <a href="https://twitter.com" target="_blank" class="transition-transform duration-300 hover:scale-110 opacity-70 hover:opacity-100">
-                        <img src="/assets/svg/twitterx.svg" alt="Twitter" class="w-6 h-6 object-contain" />
+                        <img src="/assets/svg/twitterx.svg" alt="X" class="w-6 h-6 object-contain" />
                     </a>
                     <a href="https://youtube.com" target="_blank" class="transition-transform duration-300 hover:scale-110 opacity-70 hover:opacity-100">
-                        <img src="/assets/svg/youtube.svg" alt="YouTube" class="w-6 h-6 object-contain" />
+                        <img src="/assets/svg/youtube.svg" alt="YT" class="w-6 h-6 object-contain" />
                     </a>
                     <a href="https://facebook.com" target="_blank" class="transition-transform duration-300 hover:scale-110 opacity-70 hover:opacity-100">
-                        <img src="/assets/svg/facebook.svg" alt="Facebook" class="w-6 h-6 object-contain" />
+                        <img src="/assets/svg/facebook.svg" alt="FB" class="w-6 h-6 object-contain" />
                     </a>
                 </div>
             </div>
@@ -37,9 +37,11 @@ const currentYear = new Date().getFullYear();
                 <h3 class="text-white font-bold uppercase tracking-widest mb-6">Modelos</h3>
                 <ul class="space-y-4">
                     <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">Grecale</a></li>
-                    <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">GranTurismo</a></li>
+                    <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">GranCabrio</a></li>
+                    <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">Ghibli</a></li>
                     <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">MC20</a></li>
                     <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">Folgore</a></li>
+                    <li><a href="/contacto" class="text-maserati-cian hover:text-maserati-amber font-semibold transition-colors mt-4 block">Compra tu Maserati &rarr;</a></li>
                 </ul>
             </div>
 
@@ -49,7 +51,7 @@ const currentYear = new Date().getFullYear();
                     <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">Historia</a></li>
                     <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">Experiencias</a></li>
                     <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">Restauración</a></li>
-                    <li><a href="#" class="text-maserati-plata hover:text-amber-400 transition-colors">Tienda</a></li>
+                    <li><a href="/tienda" class="text-maserati-plata hover:text-amber-400 transition-colors">Tienda</a></li>
                 </ul>
             </div>
 
@@ -68,8 +70,10 @@ const currentYear = new Date().getFullYear();
                 &copy; {currentYear} Nim's Maserati. Todos los derechos reservados.
             </p>
             <div class="flex gap-6 text-xs text-maserati-plata">
-                <a href="#" class="hover:text-amber-400 transition-colors">Privacidad</a>
-                <a href="#" class="hover:text-amber-400 transition-colors">Cookies</a>
+                <a href="/accesibilidad" class="hover:text-amber-400 transition-colors">Accesibilidad</a>
+                <button id="open-cookies" class="hover:text-amber-400 transition-colors cursor-pointer">
+                    Configuración Cookies
+                </button>
             </div>
         </div>
     </div>
@@ -84,10 +88,102 @@ const currentYear = new Date().getFullYear();
         </svg>
     </button>
 
+    <div id="cookie-modal" class="fixed inset-0 z-9999 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0 modal-backdrop"></div>
+
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95 modal-panel">
+                    
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 border-b border-gray-200">
+                        <div class="flex justify-between items-start">
+                            <div class="flex items-center gap-2">
+                                <img src="/assets/images/logos-image/logoMaserati.png" class="h-8 filter invert brightness-0" alt="Maserati">
+                            </div>
+                            <button type="button" class="close-modal text-gray-400 hover:text-gray-500">
+                                <span class="sr-only">Cerrar</span>
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mt-4" id="modal-title">Centro de preferencia de la privacidad</h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500 text-justify">
+                                Cuando visita cualquier sitio web, el mismo podría obtener o guardar información en su navegador, generalmente mediante el uso de cookies. Esta información puede ser acerca de usted, sus preferencias o su dispositivo, y se usa principalmente para que el sitio funcione según lo esperado.
+                            </p>
+                            <a href="#" class="text-sm font-bold text-maserati-azul underline mt-2 inline-block">Más información</a>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 px-4 py-4 sm:p-6">
+                        <h4 class="font-bold text-gray-700 text-lg mb-4">Gestionar las preferencias de consentimiento</h4>
+                        
+                        <div class="space-y-3">
+                            <div class="border border-gray-200 rounded bg-white overflow-hidden">
+                                <button class="w-full flex justify-between items-center p-4 text-left accordion-btn bg-white hover:bg-gray-50">
+                                    <span class="font-bold text-gray-800 text-sm">Cookies estrictamente necesarias</span>
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-xs font-bold text-blue-600">Activas siempre</span>
+                                        <svg class="w-4 h-4 text-gray-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </div>
+                                </button>
+                                <div class="accordion-content hidden px-4 pb-4 text-xs text-gray-500">
+                                    Estas cookies son necesarias para que el sitio web funcione y no se pueden desactivar en nuestros sistemas.
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-200 rounded bg-white overflow-hidden">
+                                <button class="w-full flex justify-between items-center p-4 text-left accordion-btn bg-white hover:bg-gray-50">
+                                    <span class="font-bold text-gray-800 text-sm">Cookies de rendimiento</span>
+                                    <div class="flex items-center gap-3">
+                                        <label class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation()">
+                                            <input type="checkbox" value="" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                                        </label>
+                                        <svg class="w-4 h-4 text-gray-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </div>
+                                </button>
+                                <div class="accordion-content hidden px-4 pb-4 text-xs text-gray-500">
+                                    Estas cookies nos permiten contar las visitas y fuentes de circulación para poder medir y mejorar el desempeño de nuestro sitio.
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-200 rounded bg-white overflow-hidden">
+                                <button class="w-full flex justify-between items-center p-4 text-left accordion-btn bg-white hover:bg-gray-50">
+                                    <span class="font-bold text-gray-800 text-sm">Cookies de funcionalidad</span>
+                                    <div class="flex items-center gap-3">
+                                        <label class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation()">
+                                            <input type="checkbox" value="" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                                        </label>
+                                        <svg class="w-4 h-4 text-gray-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    </div>
+                                </button>
+                                <div class="accordion-content hidden px-4 pb-4 text-xs text-gray-500">
+                                    Estas cookies permiten que el sitio ofrezca una mejor funcionalidad y personalización.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 gap-3 border-t border-gray-200">
+                        <button type="button" class="close-modal mt-3 inline-flex w-full justify-center rounded bg-[#FFD700] px-3 py-3 text-sm font-bold text-black shadow-sm hover:bg-[#F4C430] sm:mt-0 sm:w-auto uppercase tracking-wide">
+                            Confirmar mis preferencias
+                        </button>
+                        <button type="button" class="close-modal mt-3 inline-flex w-full justify-center rounded bg-[#FFD700] px-3 py-3 text-sm font-bold text-black shadow-sm hover:bg-[#F4C430] sm:mt-0 sm:w-auto uppercase tracking-wide">
+                            Rechazarlas todas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
 
 <script>
-    // Lógica Scroll Up
+
     const scrollBtn = document.getElementById('scroll-up');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
@@ -98,5 +194,48 @@ const currentYear = new Date().getFullYear();
     });
     scrollBtn?.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+    const openBtn = document.getElementById('open-cookies');
+    const modal = document.getElementById('cookie-modal');
+    const closeBtns = document.querySelectorAll('.close-modal');
+    const backdrop = modal?.querySelector('.modal-backdrop');
+    const panel = modal?.querySelector('.modal-panel');
+
+    function openModal() {
+        modal?.classList.remove('hidden');
+        setTimeout(() => {
+            backdrop?.classList.remove('opacity-0');
+            panel?.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+        }, 10);
+    }
+
+    function closeModal() {
+        backdrop?.classList.add('opacity-0');
+        panel?.classList.add('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+        setTimeout(() => {
+            modal?.classList.add('hidden');
+        }, 300); 
+    }
+
+    openBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+    });
+
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+
+    const accordions = document.querySelectorAll('.accordion-btn');
+    
+    accordions.forEach(acc => {
+        acc.addEventListener('click', () => {
+            const content = acc.nextElementSibling;
+            const arrow = acc.querySelector('svg');
+            
+            content?.classList.toggle('hidden');
+            arrow?.classList.toggle('rotate-90');
+        });
     });
 </script>
