@@ -72,7 +72,7 @@ const title = "Contacto | Maserati";
                         <p class="text-xs text-maserati-plata animate-pulse">Detectando ubicación...</p>
                     </div>
                     
-                    <button id="locate-btn" class="mt-4 text-xs text-maserati-azul hover:text-white underline transition-colors">
+                    <button id="locate-btn" class="mt-4 text-xs text-maserati-white hover:text-maserati-amber underline transition-colors">
                         Actualizar ubicación
                     </button>
                 </div>
@@ -90,12 +90,13 @@ const title = "Contacto | Maserati";
                             <label for="name" class="block text-[10px] font-bold text-maserati-plata uppercase tracking-widest mb-1">Nombre</label>
                             <input type="text" id="name" name="name" placeholder="Su nombre"
                                 class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30"
+                                minlength="3" required
                             />
                         </div>
                         <div>
                             <label for="email" class="block text-[10px] font-bold text-maserati-plata uppercase tracking-widest mb-1">Email</label>
                             <input type="email" id="email" name="email" placeholder="correo@ejemplo.com"
-                                class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30"
+                                class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30" required
                             />
                         </div>
                     </div>
@@ -103,7 +104,7 @@ const title = "Contacto | Maserati";
                     <div>
                         <label for="subject" class="block text-[10px] font-bold text-maserati-plata uppercase tracking-widest mb-1">Asunto</label>
                         <select id="subject" name="subject" 
-                            class="w-full bg-maserati-negro border border-white/10 text-white/30 px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all appearance-none"
+                            class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all appearance-none" required
                         >
                             <option value="">Seleccione un motivo</option>
                             <option value="info">Información General</option>
@@ -115,7 +116,7 @@ const title = "Contacto | Maserati";
                     <div>
                         <label for="message" class="block text-[10px] font-bold text-maserati-plata uppercase tracking-widest mb-1">Mensaje</label>
                         <textarea id="message" name="message" rows="4" placeholder="¿En qué podemos ayudarle?"
-                            class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30 resize-none"
+                            class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30 resize-none" required minlength="20"
                         ></textarea>
                     </div>
 
@@ -172,27 +173,24 @@ const title = "Contacto | Maserati";
         const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
                   Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        return R * c; // Retorna distancia en km
+        return R * c; 
     }
 
     function findNearest(lat: number, lon: number) {
-        // Calculamos distancia para todos
         const sorted = dealerships.map(dealer => {
             return { ...dealer, dist: calculateDistance(lat, lon, dealer.lat, dealer.lon) };
-        }).sort((a, b) => (a.dist || 0) - (b.dist || 0)); // Ordenar de menor a mayor distancia
+        }).sort((a, b) => (a.dist || 0) - (b.dist || 0)); 
 
-        // Cogemos los 3 más cercanos
         renderDealerships(sorted.slice(0, 3));
     }
 
-    // 5. RENDERIZAR EN EL HTML
     function renderDealerships(list: Dealership[]) {
         if(!dealershipContainer) return;
         
         dealershipContainer.innerHTML = list.map(d => `
             <div class="border-l-2 border-maserati-plata/30 pl-3 pb-2 transition-colors hover:border-maserati-azul group cursor-default">
                 <div class="flex justify-between items-center">
-                    <p class="text-white text-sm font-bold group-hover:text-maserati-azul transition-colors">${d.name}</p>
+                    <p class="text-white text-sm font-bold group-hover:text-maserati-amber transition-colors">${d.name}</p>
                     <span class="text-[9px] uppercase border border-maserati-plata/20 px-1 rounded text-maserati-plata">${d.type}</span>
                 </div>
                 <p class="text-xs text-maserati-plata mt-1">${d.address}</p>
@@ -204,10 +202,9 @@ const title = "Contacto | Maserati";
         `).join('');
     }
 
-    // 6. INICIALIZAR
+
     function initGeo() {
         if (navigator.geolocation) {
-            // Feedback de carga
             if(locateBtn) locateBtn.innerText = "Localizando...";
             
             navigator.geolocation.getCurrentPosition(
@@ -217,7 +214,6 @@ const title = "Contacto | Maserati";
                 },
                 (error) => {
                     console.log("Geo denegada o error");
-                    // Fallback: mostramos Madrid y BCN
                     renderDealerships([dealerships[0], dealerships[2], dealerships[3]]); 
                     if(locateBtn) locateBtn.innerText = "Actualizar Ubicación (Permiso denegado)";
                 }
@@ -231,8 +227,8 @@ const title = "Contacto | Maserati";
     locateBtn?.addEventListener('click', initGeo);
 
 
-    // --- LÓGICA DE FORMULARIO ---
-    const form = document.getElementById('contact-form') as HTMLFormElement; // Type assertion
+
+    const form = document.getElementById('contact-form') as HTMLFormElement;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
     const successMsg = document.getElementById('feedback-success');
     const errorMsg = document.getElementById('feedback-error');
