@@ -1,35 +1,104 @@
-# [Nim's Maserati] 🚀
+# 🔱 Maserati 110 Aniversario - Web Experience
 
-![Estado del Proyecto](https://img.shields.io/badge/Estado-En%20Desarrollo-green) ![Licencia](https://img.shields.io/badge/Licencia-MIT-blue)
+![Maserati Banner](/public/assets/images/logos-image/logoMaserati.png)
 
-Bienvenido a **[Nim's Maserati]**, una aplicación web moderna y de alto rendimiento. Este proyecto combina la potencia de la arquitectura de islas de Astro con la interactividad de React, animaciones avanzadas y mapas dinámicos.
+> **"110 Años de Pura Pasión".**
+> Una plataforma web inmersiva desarrollada con **Astro** y **React** que fusiona lujo, innovación y rendimiento. Este proyecto no es solo una landing page, es una aplicación interactiva completa con e-commerce, reservas de eventos, geolocalización y configuración de vehículos en tiempo real mediante gestos.
 
-## 🛠️ Tecnologías Utilizadas
+---
 
-Este proyecto ha sido construido utilizando las siguientes herramientas y librerías:
+## 📋 Índice
 
-* **[Astro](https://astro.build/):** Framework principal para generar un sitio estático súper rápido y optimizado.
-* **[React](https://react.dev/):** Utilizado para los componentes interactivos de la UI (Islas de Astro).
-* **[Tailwind CSS](https://tailwindcss.com/):** Framework de utilidades para un diseño rápido y responsivo.
-* **[GSAP (GreenSock)](https://greensock.com/):** Específicamente el plugin **ScrollTrigger** para animaciones basadas en el scroll.
-* **[Leaflet](https://leafletjs.com/):** Para la integración de mapas interactivos y ligeros.
-* **JavaScript (ES6+):** Lógica del lado del cliente y control de eventos.
+1. [Características Principales](#-características-principales)
+2. [Stack Tecnológico](#-stack-tecnológico)
+3. [Arquitectura del Proyecto](#-arquitectura-del-proyecto)
+4. [Detalle de Funcionalidades](#-detalle-de-funcionalidades)
+5. [Instalación y Despliegue](#-instalación-y-despliegue)
+6. [Autor](#-autor)
 
-## ✨ Características Principales
+---
 
-* ⚡ **Rendimiento:** Carga inicial mínima gracias a la arquitectura de Astro (Zero JS by default).
-* 🎨 **Diseño Responsivo:** Adaptado a móviles y escritorio mediante Tailwind CSS.
-* 🎭 **Animaciones Suaves:** Efectos visuales controlados por el scroll usando GSAP.
-* 🗺️ **Geolocalización:** Mapas interactivos integrados con Leaflet.
-* 🧩 **Componentes Híbridos:** Integración fluida entre HTML estático y componentes React hidratados según necesidad.
+## 🚀 Características Principales
 
-## 🚀 Instalación y Uso
+### 🎨 Configurador "Rasca y Gana" (Canvas API)
+Una experiencia táctil única. El usuario descubre el color del coche "rascando" una capa blanca digital que revela la imagen real bajo un boceto técnico.
+- **Tecnología:** HTML5 Canvas + `globalCompositeOperation="destination-out"`.
+- **Efecto Visual:** El boceto se superpone con `mix-blend-multiply` para mantener los detalles negros sobre el color revelado.
 
-Sigue estos pasos para ejecutar el proyecto en tu entorno local:
+### 🛍️ Tienda y Carrito Persistente
+Sistema completo de e-commerce sin recargas de página (SPA-like feel).
+- **Carrito Global:** Accesible desde cualquier punto de la web (`CartDrawer`), sincronizado con `localStorage`.
+- **Lógica de Negocio:** Control de stock máximo y cálculo de totales en tiempo real usando **Nanostores**.
+- **Filtrado:** Navegación por categorías con transiciones suaves.
 
-### 1. Clonar el repositorio
+### 📍 Geolocalización y Mapas
+- **Buscador de Concesionarios:** Utiliza la API de Geolocalización del navegador y la fórmula Haversine para calcular la distancia entre el usuario y los concesionarios oficiales (simulados).
+- **Mapas Interactivos:** Integración de **Leaflet** para visualizar la sede de Módena.
+
+### 📊 Dashboard de Datos
+- **Gráficos Animados:** Visualización de KPIs y estadísticas con animaciones CSS y GSAP ScrollTrigger.
+
+---
+
+## 🛠 Stack Tecnológico
+
+El proyecto utiliza una arquitectura de "Islas" para máximo rendimiento:
+
+* **Core:** [Astro](https://astro.build/) (HTML estático por defecto).
+* **Interactividad:** [React](https://reactjs.org/) (Para componentes complejos: Carrito, Configurador, Tienda).
+* **Estilos:** [Tailwind CSS v4](https://tailwindcss.com/) (Diseño responsivo y utilitario).
+* **Estado Global:** [Nanostores](https://github.com/nanostores/nanostores) (Gestión de estado ligera entre Astro y React).
+* **Animaciones:** [GSAP](https://greensock.com/gsap/) (ScrollTrigger y Timelines).
+* **Mapas:** [Leaflet](https://leafletjs.com/).
+
+---
+
+## 📂 Arquitectura del Proyecto
 
 ```bash
-git clone [https://github.com/](https://github.com/)[TU_USUARIO]/[NOMBRE_DEL_REPO].git
-cd [NOMBRE_DEL_REPO]
-```
+maserati-experience/
+├── public/
+│   └── assets/              # Recursos estáticos (Imágenes, Vídeos, Iconos)
+├── src/
+│   ├── components/          # 🧩 Bloques de UI
+│   │   ├── CarColorizer.jsx     # Lógica del Canvas "Rasca y Gana"
+│   │   ├── CartDrawer.jsx       # Sidebar del carrito (React + Nanostores)
+│   │   ├── EventCard.jsx        # Tarjeta de evento con lógica de stock
+│   │   ├── Features.astro       # Sección estática con animaciones GSAP
+│   │   ├── Footer.astro         # Pie de página y Modal de Cookies
+│   │   ├── GlobalConfigurator.jsx # Contenedor modal del configurador
+│   │   ├── Hero.astro           # Portada con vídeo de fondo
+│   │   ├── Navbar.astro         # Menú responsive y animaciones hover
+│   │   ├── ProductCard.jsx      # Componente de producto individual
+│   │   └── ProductGrid.jsx      # Grid filtrable de productos
+│   ├── data/                # 💾 Fuentes de datos estáticas
+│   │   ├── cars.js              # Modelos, colores y rutas de imágenes
+│   │   ├── events.js            # Catálogo de eventos
+│   │   └── products.js          # Catálogo de merchandising
+│   ├── layouts/
+│   │   └── Layout.astro     # 📐 Plantilla base (SEO, Scripts globales)
+│   ├── pages/               # 🌐 Rutas de la web
+│   │   ├── accesibilidad.astro  # Declaración legal
+│   │   ├── comunidad.astro      # Testimonios con API RandomUser
+│   │   ├── contacto.astro       # Formulario y Geolocalización
+│   │   ├── eventos.astro        # Listado de eventos
+│   │   ├── graficos.astro       # Dashboard de métricas
+│   │   ├── index.astro          # Landing Page principal
+│   │   ├── mapa.astro           # Integración Leaflet
+│   │   ├── sobreNosotros.astro  # Historia y valores
+│   │   └── tienda.astro         # E-commerce principal
+│   ├── stores/              # 🧠 Estado Global
+│   │   ├── cartStores.js        # Lógica de carrito y localStorage
+│   │   └── configuratorStore.js # Control del modal "Rasca y Gana"
+│   └── styles/
+│       └── global.css       # Configuración de Tailwind @theme
+└── package.json
+Sigue estos pasos para ejecutar el proyecto en tu entorno local:
+
+## 💿 Instalación y Despliegue
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone [https://github.com/CosminFlorin/maserati-110.git](https://github.com/CosminFlorin/maserati-110.git)
+    cd maserati-110
+    ```
