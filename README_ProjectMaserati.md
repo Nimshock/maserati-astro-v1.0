@@ -1,4 +1,4 @@
-# 🔱 Maserati 110 Aniversario - Web Experience
+# 🔱 Maserati  - Web Experience
 
 ![Maserati Banner](/public/assets/images/logos-image/logoMaserati.png)
 
