@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { addToCart } from '../stores/cartStores'; // <--- IMPORTAMOS LA TIENDA
+import { addItemToCart } from '../stores/cartStores'; 
 
 export default function EventCard({ id, title, date, location, image, price, initialStock, description }) {
     const [stock, setStock] = useState(initialStock);
@@ -9,18 +9,15 @@ export default function EventCard({ id, title, date, location, image, price, ini
         if (stock > 0) {
             setIsAdding(true);
             
-            // Simular proceso
             setTimeout(() => {
                 setStock(stock - 1);
                 
-                // --- AQUÍ GUARDAMOS EN EL CARRITO ---
-                addToCart({
+                addItemToCart({
                     id,
                     title,
                     price,
                     image,
                 });
-                // ------------------------------------
 
                 setIsAdding(false);
             }, 500);
@@ -29,7 +26,6 @@ export default function EventCard({ id, title, date, location, image, price, ini
 
     const isSoldOut = stock === 0;
 
-    // ... (El resto de tu diseño visual se mantiene igual) ...
     return (
         <div className="group relative flex flex-col h-full bg-maserati-gris/40 border border-white/5 rounded-xl overflow-hidden backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] hover:border-maserati-azul/50">
             
@@ -37,7 +33,7 @@ export default function EventCard({ id, title, date, location, image, price, ini
                 <img 
                     src={image} 
                     alt={title} 
-                    className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 ${isSoldOut ? 'grayscale opacity-60' : ''}`} 
+                    className={`w-full h-full object-cover transform scale-110 ${isSoldOut ? 'grayscale opacity-60' : ''}`} 
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-maserati-negro to-transparent opacity-60"></div>
                 <div className="absolute top-4 right-4">

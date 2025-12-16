@@ -25,7 +25,7 @@ export const events = [
         date: "05 Dic 2026",
         location: "Costa Azul, Francia",
         image: "/assets/images/eventos/GranTurismoTour.webp",
-        price: 3500,
+        price: 3000,
         stock: 12,
         description: "Un viaje de fin de semana combinando lujo y conducción."
     }
