@@ -1,10 +1,7 @@
-// src/data/cars.js
-
 export const carsData = {
     mc20: {
         name: "MC20",
         tagline: "The First of its Kind",
-        // El boceto del MC20 es JPG, pero lo arreglaremos con CSS
         sketchImage: "/assets/images/coches/bocetosCoches/MC20_Boceto.png",
         colors: [
             { id: 'blu', name: 'Blu Infinito', hex: '#2563eb', image: '/assets/images/coches/cochesColoreados/MC20/MC20_Blue.png' },
@@ -18,7 +15,6 @@ export const carsData = {
         tagline: "The Everyday Exceptional",
         sketchImage: "/assets/images/coches/bocetosCoches/Grecale_Boceto.png",
         colors: [
-            // Solo pasaste el azul, así que solo ponemos este disponible
             { id: 'blu', name: 'Blu Intenso', hex: '#1e40af', image: '/assets/images/coches/cochesColoreados/Grecale/maseratiGrecale.png' },
         ]
     },

@@ -1,4 +1,3 @@
-// src/store/configuratorStore.js
 import { atom } from 'nanostores';
 
 export const isConfiguratorOpen = atom(false);
