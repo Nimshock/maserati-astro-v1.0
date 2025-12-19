@@ -27,7 +27,7 @@ export default function CarColorizer({ colors = [], sketchImage = '' }) {
         
         const ctx = canvas.getContext('2d');
         
-        ctx.fillStyle = '#FFFFFF'; 
+        ctx.fillStyle = '#fff'; 
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
         ctx.globalCompositeOperation = "destination-out"; 
@@ -162,7 +162,7 @@ export default function CarColorizer({ colors = [], sketchImage = '' }) {
                     <img 
                         src={sketchImage} 
                         alt="Boceto"
-                        className="w-full h-full object-contain opacity-100 mix-blend-multiply pointer-events-none"
+                        className="w-full h-full object-contain opacity-35"
                     />
                 </div>
             </div>
