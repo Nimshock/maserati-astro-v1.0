@@ -1,7 +1,7 @@
 export const carsData = {
     mc20: {
         name: "MC20",
-        tagline: "The First of its Kind",
+        tagline: "El primero de su clase",
         sketchImage: "/assets/images/coches/bocetosCoches/MC20_Boceto.png",
         colors: [
             { id: 'blu', name: 'Blu Infinito', hex: '#2563eb', image: '/assets/images/coches/cochesColoreados/MC20/MC20_Blue.png' },
@@ -12,7 +12,7 @@ export const carsData = {
     },
     grecale: {
         name: "Grecale",
-        tagline: "The Everyday Exceptional",
+        tagline: "Lo excepcional de cada día",
         sketchImage: "/assets/images/coches/bocetosCoches/Grecale_Boceto.png",
         colors: [
             { id: 'blu', name: 'Blu Intenso', hex: '#1e40af', image: '/assets/images/coches/cochesColoreados/Grecale/maseratiGrecale.png' },
@@ -20,7 +20,7 @@ export const carsData = {
     },
     ghibli: {
         name: "Ghibli",
-        tagline: "You're not like everyone else",
+        tagline: "Más que un sedán, un soplo de adrenalina",
         sketchImage: "/assets/images/coches/bocetosCoches/Ghibli_Boceto.png",
         colors: [
             { id: 'nero', name: 'Nero Ribelle', hex: '#000000', image: '/assets/images/coches/cochesColoreados/Ghibli/maseratiGhibli.png' },
@@ -28,7 +28,7 @@ export const carsData = {
     },
     grancabrio: {
         name: "GranCabrio",
-        tagline: "The Spyder to the Grand Tourer",
+        tagline: "Oda a la alegría: Libertad sin filtros",
         sketchImage: "/assets/images/coches/bocetosCoches/GranCabrio_Boceto.png",
         colors: [
             { id: 'grigio', name: 'Grigio', hex: '#6b7280', image: '/assets/images/coches/cochesColoreados/GranCabrio/maseratiGranCabrio.png' },
