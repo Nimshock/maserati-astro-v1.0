@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 
-
 const navLinks = [
     { name: "Inicio", href: "/" },
     { name: "Eventos", href: "/eventos" },
@@ -13,76 +12,45 @@ const navLinks = [
     { name: "Contacto", href: "/contacto" },
 ];
 ---
-<nav class="fixed w-full z-50 top-0 left-0 bg-maserati-negro/95 backdrop-blur-md border-b border-maserati-gris/30 transition-all duration-300">
-    <div class="w-full px-6 md:px-12 py-4 flex justify-between items-center">
+
+<nav class="fixed w-full z-50 top-0 left-0 bg-maserati-negro/95 backdrop-blur-md border-b border-maserati-gris/30 transition-all duration-300 h-16 md:h-20 flex items-center">
+    
+    <div class="w-full px-4 md:px-8 lg:px-12 flex justify-between items-center">
         
-        <a href="/" class="shrink-0 transition-opacity hover:opacity-80">
-            <img src="/assets/images/logos-image/logoMaserati.png" alt="Maserati Home" class="h-15 w-auto object-contain" />
+        <a href="/" class="shrink-0 transition-opacity hover:opacity-80 group">
+            <img 
+                src="/assets/images/logos-image/logoMaserati.png" 
+                alt="Maserati Home" 
+                class="h-8 md:h-10 lg:h-12 w-auto object-contain transition-transform group-hover:scale-105" 
+            />
         </a>
 
-        <div class="hidden md:flex items-center gap-8">
-            
-            <a href="/" class="maserati-btn">
-                <span></span><span></span><span></span><span></span> 
-                Inicio
-            </a>
-
-            <a href="/eventos" class="maserati-btn">
-                <span></span><span></span><span></span><span></span>
-                Eventos
-            </a>
-
-            <a href="/tienda" class="maserati-btn">
-                <span></span><span></span><span></span><span></span>
-                Tienda
-            </a>
-
-            <a href="/graficos" class="maserati-btn">
-                <span></span><span></span><span></span><span></span>
-                Gráficos
-            </a>
-
-            <a href="/comunidad" class="maserati-btn">
-                <span></span><span></span><span></span><span></span>
-                Comunidad
-            </a>
-
-            <a href="/mapa" class="maserati-btn">
-                <span></span><span></span><span></span><span></span>
-                Mapa
-            </a>
-
-
-            <a href="/sobreNosotros" class="maserati-btn">
-                <span></span><span></span><span></span><span></span>
-                Sobre Nosotros
-            </a>
-
-            <a href="/contacto" class="maserati-btn">
-                <span></span><span></span><span></span><span></span>
-                Contacto
-            </a>
-
+        <div class="hidden lg:flex items-center gap-1 xl:gap-4">
+            {navLinks.map((link) => (
+                <a href={link.href} class="maserati-btn text-center whitespace-nowrap">
+                    <span></span><span></span><span></span><span></span> 
+                    {link.name}
+                </a>
+            ))}
         </div>
 
-        <!-- Esto es el SVG de la "hamburguesa" del menu en mobile -->
-        <button id="mobile-menu-btn" class="md:hidden text-maserati-blanco hover:text-maserati-cian focus:outline-none">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        <button id="mobile-menu-btn" aria-label="Abrir menú" class="lg:hidden text-maserati-blanco hover:text-maserati-cian focus:outline-none p-2 rounded-md transition-colors hover:bg-white/5">
+            <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
         </button>
-        <!-- ----------------------------------------------------------- -->
     </div>
 
-    <div id="mobile-menu" class="hidden md:hidden bg-maserati-negro border-b border-maserati-gris/30 absolute w-full shadow-2xl">
-        <div class="flex flex-col p-6 space-y-4 text-center">
-            <a href="/" class="mobile-link">Inicio</a>
-            <a href="/eventos" class="mobile-link">Eventos</a>
-            <a href="/tienda" class="mobile-link">Tienda</a>
-            <a href="/graficos" class="mobile-link">Gráficos</a>
-            <a href="/comunidad" class="mobile-link">Comunidad</a>
-            <a href="/mapa" class="mobile-link">Mapa</a>
-            <a href="/sobreNosotros" class="mobile-link">Sobre nosotros</a>
-            <a href="/contacto" class="mobile-link">Contacto</a>
-            <div id="mobile-auth-buttons" class="pt-4 border-t border-maserati-gris/30"></div>
+    <div id="mobile-menu" class="hidden absolute top-16 md:top-20 left-0 w-full bg-maserati-negro/98 border-b border-maserati-gris/30 shadow-2xl backdrop-blur-xl lg:hidden max-h-[85vh] overflow-y-auto custom-scrollbar">
+        <div class="flex flex-col p-6 space-y-2 text-center">
+            {navLinks.map((link) => (
+                <a 
+                    href={link.href} 
+                    class="mobile-link block text-maserati-plata hover:text-white hover:bg-maserati-azul/20 text-base md:text-lg font-medium py-3 rounded-lg transition-all duration-300 border border-transparent hover:border-maserati-azul/30"
+                >
+                    {link.name}
+                </a>
+            ))}
         </div>
     </div>
 </nav>
@@ -91,96 +59,93 @@ const navLinks = [
     .maserati-btn {
         position: relative;
         display: inline-block;
-        padding: 10px 24px;
+        padding: 8px 12px; 
         color: var(--color-maserati-plata);
-        font-size: 0.8rem;
+        font-size: 0.7rem; /* Texto compacto */
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.05em;
         text-decoration: none;
         overflow: hidden; 
-        transition: 0.2s;
+        transition: 0.3s ease;
         font-weight: 600;
-        border-radius: 6px;
+        border-radius: 4px;
+    }
+
+    @media (min-width: 1280px) {
+        .maserati-btn {
+            font-size: 0.8rem;
+            padding: 10px 20px;
+            letter-spacing: 0.1em;
+        }
+    }
+
+    @media (min-width: 1536px) {
+        .maserati-btn {
+            font-size: 0.9rem;
+            padding: 12px 24px;
+        }
     }
 
     .maserati-btn:hover {
-        color: #fff; 
-        background: #1b1a1a; 
-        box-shadow: 0 0 10px rgba(0,0,0,0.5); 
-        transition-delay: 0.1s; 
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05); 
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); 
     }
 
 
-    .maserati-btn span {
-        position: absolute;
-        display: block;
-    }
+    .maserati-btn span { position: absolute; display: block; background: #d4af37; }
+
+    .maserati-btn span:nth-child(1) { top: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #d4af37); }
+    .maserati-btn:hover span:nth-child(1) { left: 100%; transition: 0.7s; }
+
+    .maserati-btn span:nth-child(2) { top: -100%; right: 0; width: 2px; height: 100%; background: linear-gradient(180deg, transparent, #d4af37); }
+    .maserati-btn:hover span:nth-child(2) { top: 100%; transition: 0.7s; transition-delay: 0.1s; }
+
+    .maserati-btn span:nth-child(3) { bottom: 0; right: -100%; width: 100%; height: 2px; background: linear-gradient(270deg, transparent, #d4af37); }
+    .maserati-btn:hover span:nth-child(3) { right: 100%; transition: 0.7s; transition-delay: 0.2s; }
+
+    .maserati-btn span:nth-child(4) { bottom: -100%; left: 0; width: 2px; height: 100%; background: linear-gradient(360deg, transparent, #d4af37); }
+    .maserati-btn:hover span:nth-child(4) { bottom: 100%; transition: 0.7s; transition-delay: 0.3s; }
 
 
-    .maserati-btn span:nth-child(1) {
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(90deg, transparent, #d4af37);
-    }
-    .maserati-btn:hover span:nth-child(1) {
-        left: 100%;
-        transition: 1s;
-    }
-
-
-    .maserati-btn span:nth-child(2) {
-        top: -100%;
-        right: 0;
-        width: 3px;
-        height: 100%;
-        background: linear-gradient(180deg, transparent, #d4af37);
-    }
-    .maserati-btn:hover span:nth-child(2) {
-        top: 100%;
-        transition: 1s;
-        transition-delay: 0.25s; 
-    }
-
-
-    .maserati-btn span:nth-child(3) {
-        bottom: 0;
-        right: -100%;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(270deg, transparent, #d4af37);
-    }
-    .maserati-btn:hover span:nth-child(3) {
-        right: 100%;
-        transition: 1s;
-        transition-delay: 0.5s;
-    }
-
-
-    .maserati-btn span:nth-child(4) {
-        bottom: -100%;
-        left: 0;
-        width: 3px;
-        height: 100%;
-        background: linear-gradient(360deg, transparent, #d4af37);
-    }
-    .maserati-btn:hover span:nth-child(4) {
-        bottom: 100%;
-        transition: 1s;
-        transition-delay: 0.75s;
-    }
-
-
-    .mobile-link {
-            block text-maserati-plata hover:text-maserati-azul text-lg py-2;
-    }
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #0b0c10; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #1f4068; border-radius: 4px; }
 </style>
 
 <script>
-
     const menuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    menuBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
+    
 
+    menuBtn?.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita que el clic se propague al document
+        mobileMenu?.classList.toggle('hidden');
+    });
+
+
+    document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const isClickInsideMenu = mobileMenu?.contains(target);
+        const isClickOnBtn = menuBtn?.contains(target);
+
+        if (!isClickInsideMenu && !isClickOnBtn && !mobileMenu?.classList.contains('hidden')) {
+            mobileMenu?.classList.add('hidden');
+        }
+    });
+
+
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu?.classList.add('hidden');
+        });
+    });
+
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) { 
+            mobileMenu?.classList.add('hidden');
+        }
+    });
 </script>

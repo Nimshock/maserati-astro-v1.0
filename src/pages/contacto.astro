@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { dealerships } from '../data/dealerships';
+
 const title = "Contacto | Maserati";
 ---
 
@@ -75,58 +77,45 @@ const title = "Contacto | Maserati";
                     <button id="locate-btn" class="mt-4 text-xs text-maserati-white hover:text-maserati-amber underline transition-colors">
                         Actualizar ubicación
                     </button>
+                    
+                    
+                    <div id="dealerships-data" data-list={JSON.stringify(dealerships)} class="hidden"></div>
                 </div>
 
             </div>
 
+            
             <div class="bg-maserati-gris/20 p-8 md:p-10 rounded-xl border border-white/5 backdrop-blur-sm shadow-2xl h-fit">
-                
                 <h3 class="text-white text-2xl font-bold mb-8">Envíenos un mensaje</h3>
-
                 <form id="contact-form" class="space-y-5">
-                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label for="name" class="block text-[10px] font-bold text-maserati-plata uppercase tracking-widest mb-1">Nombre</label>
-                            <input type="text" id="name" name="name" placeholder="Su nombre"
-                                class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30"
-                                minlength="3" required
-                            />
+                            <input type="text" id="name" name="name" placeholder="Su nombre" class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30" minlength="3" required />
                         </div>
                         <div>
                             <label for="email" class="block text-[10px] font-bold text-maserati-plata uppercase tracking-widest mb-1">Email</label>
-                            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com"
-                                class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30" required
-                            />
+                            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30" required />
                         </div>
                     </div>
-
                     <div>
                         <label for="subject" class="block text-[10px] font-bold text-maserati-plata uppercase tracking-widest mb-1">Asunto</label>
-                        <select id="subject" name="subject" 
-                            class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all appearance-none" required
-                        >
+                        <select id="subject" name="subject" class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all appearance-none" required>
                             <option value="">Seleccione un motivo</option>
                             <option value="info">Información General</option>
                             <option value="test-drive">Solicitar Test Drive</option>
                             <option value="eventos">Eventos Exclusivos</option>
                         </select>
                     </div>
-
                     <div>
                         <label for="message" class="block text-[10px] font-bold text-maserati-plata uppercase tracking-widest mb-1">Mensaje</label>
-                        <textarea id="message" name="message" rows="4" placeholder="¿En qué podemos ayudarle?"
-                            class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30 resize-none" required minlength="20"
-                        ></textarea>
+                        <textarea id="message" name="message" rows="4" placeholder="¿En qué podemos ayudarle?" class="w-full bg-maserati-negro border border-white/10 text-white px-3 py-2 text-sm rounded focus:outline-none focus:border-maserati-azul focus:ring-1 focus:ring-maserati-azul transition-all placeholder-white/30 resize-none" required minlength="20"></textarea>
                     </div>
-
                     <button type="submit" id="submit-btn" class="w-full bg-maserati-azul text-white font-bold py-3 mt-2 rounded uppercase text-xs tracking-widest hover:bg-maserati-amber hover:text-black transition-all shadow-lg shadow-maserati-azul/20">
                         Enviar Solicitud
                     </button>
-
                     <div id="feedback-success" class="hidden text-green-400 text-xs text-center font-semibold mt-4">✓ Enviado correctamente.</div>
                     <div id="feedback-error" class="hidden text-red-400 text-xs text-center font-semibold mt-4">⚠ Rellene todos los campos.</div>
-
                 </form>
             </div>
 
@@ -135,39 +124,25 @@ const title = "Contacto | Maserati";
 </Layout>
 
 <script>
-    
     interface Dealership {
         name: string;
         lat: number;
         lon: number;
         address: string;
-        type: string; 
+        type: string;
         dist?: number; 
     }
+
+
+    const dataElement = document.getElementById('dealerships-data');
+
+    const dealerships: Dealership[] = dataElement ? JSON.parse(dataElement.dataset.list || '[]') : [];
 
     const dealershipContainer = document.getElementById('dealership-container');
     const locateBtn = document.getElementById('locate-btn');
 
-
-    const dealerships: Dealership[] = [
-        { name: "Maserati Zaragoza - Automóviles Sánchez", lat: 41.66315200961471, lon: -0.9273036436213926, address: "Av. de Logroño, 32, 50011 Zaragoza", type: "Oficial" },
-        { name: "Maserati Madrid - Tayre", lat: 40.4168, lon: -3.6700, address: "C/ de López de Hoyos, 62, Madrid", type: "Oficial" },
-        { name: "Maserati Madrid - Astara", lat: 40.5300, lon: -3.6500, address: "Av. de Burgos, 114, Madrid", type: "Oficial" },
-        { name: "Maserati Barcelona - Cars Gallery", lat: 41.3800, lon: 2.1200, address: "Passeig de la Zona Franca, 10, BCN", type: "Oficial" },
-        { name: "Maserati Valencia - Quadis", lat: 39.4700, lon: -0.4000, address: "Av. General Avilés, 36, Valencia", type: "Oficial" },
-        { name: "Maserati Marbella - C. de Salamanca", lat: 36.5000, lon: -4.9000, address: "Av. Norberto Goizueta, San Pedro", type: "Oficial" },
-        { name: "Maserati Málaga", lat: 36.7200, lon: -4.4200, address: "Calle Cuevas Bajas, 3, Málaga", type: "Servicio Autorizado" },
-        { name: "Maserati Bilbao - Grupo Eibar", lat: 43.2600, lon: -2.9300, address: "Gran Vía Don Diego López, Bilbao", type: "Oficial" },
-        { name: "Maserati Sevilla - Avisa", lat: 37.3800, lon: -5.9800, address: "Calle del Motor, 1, Sevilla", type: "Oficial" },
-        { name: "Maserati Vigo - Celtamotor", lat: 42.2400, lon: -8.7200, address: "Ctra. de Camposancos, 16, Vigo", type: "Oficial" },
-        { name: "Maserati Mallorca", lat: 39.6000, lon: 2.6500, address: "Gran Via Asima, 26, Palma", type: "Oficial" },
-        { name: "Maserati Lisboa (Portugal)", lat: 38.7200, lon: -9.1400, address: "Rua do Proletariado 16, Carnaxide", type: "Oficial" },
-        { name: "Maserati Porto (Portugal)", lat: 41.1500, lon: -8.6200, address: "R. de Manuel Pinto de Azevedo, Porto", type: "Oficial" }
-    ];
-
-
     function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-        const R = 6371; // Radio tierra km
+        const R = 6371; 
         const dLat = (lat2 - lat1) * Math.PI / 180;
         const dLon = (lon2 - lon1) * Math.PI / 180;
         const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
@@ -184,9 +159,9 @@ const title = "Contacto | Maserati";
         renderDealerships(sorted.slice(0, 3));
     }
 
+
     function renderDealerships(list: Dealership[]) {
         if(!dealershipContainer) return;
-        
         dealershipContainer.innerHTML = list.map(d => `
             <div class="border-l-2 border-maserati-plata/30 pl-3 pb-2 transition-colors hover:border-maserati-azul group cursor-default">
                 <div class="flex justify-between items-center">
@@ -202,11 +177,9 @@ const title = "Contacto | Maserati";
         `).join('');
     }
 
-
     function initGeo() {
         if (navigator.geolocation) {
             if(locateBtn) locateBtn.innerText = "Localizando...";
-            
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     findNearest(position.coords.latitude, position.coords.longitude);
@@ -227,15 +200,17 @@ const title = "Contacto | Maserati";
     locateBtn?.addEventListener('click', initGeo);
 
 
-
-    const form = document.getElementById('contact-form') as HTMLFormElement;
-    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    
     const successMsg = document.getElementById('feedback-success');
     const errorMsg = document.getElementById('feedback-error');
 
+
     form?.addEventListener('submit', (e) => {
         e.preventDefault();
-        const formData = new FormData(form);
+        
+        const formData = new FormData(form); 
         const name = formData.get('name');
         
         if (!name) { 
@@ -244,7 +219,7 @@ const title = "Contacto | Maserati";
         }
 
         if(submitBtn) {
-            submitBtn.disabled = true;
+            submitBtn.disabled = true; 
             submitBtn.innerHTML = '<span class="animate-pulse">Enviando...</span>';
             submitBtn.classList.add('opacity-70');
         }
@@ -257,7 +232,8 @@ const title = "Contacto | Maserati";
             }
             successMsg?.classList.remove('hidden');
             errorMsg?.classList.add('hidden');
-            form.reset();
+            
+            form.reset(); 
         }, 1500);
     });
 </script>

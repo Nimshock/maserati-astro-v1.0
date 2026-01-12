@@ -2,65 +2,88 @@
 import '../styles/global.css';
 ---
 
-<section class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-maserati-negro">
+<section id="hero-section" class="relative min-h-screen w-full overflow-hidden flex items-center justify-center bg-maserati-negro landscape:h-auto landscape:min-h-[600px] landscape:py-20">
     
     <div class="absolute inset-0 z-0">
         <video
             src="/assets/videos/gt-110-anniversary-hero-video.mp4"
+            poster="/public/assets/videos/gt-110-anniversary-hero-video.mp4"
             class="w-full h-full object-cover opacity-60"
-            id="hero-bg"
             autoplay
             loop
             muted
             playsinline
         ></video>
-        <div class="absolute inset-0 bg-linear-to-t from-maserati-negro via-maserati-negro/40 to-transparent"></div>
+        
+        <div class="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-maserati-negro"></div>
     </div>
 
-    <div class="relative z-10 container mx-auto px-6 md:px-12 2xl:px-24 2xl:max-w-[2600px] flex flex-col md:flex-row items-center h-full">
+    <div class="relative z-10 container mx-auto px-6 md:px-12 2xl:px-24 min-[1921px]:max-w-[95%] min-[1921px]:px-40 flex flex-col md:flex-row items-center h-full">
         
         <div class="hidden md:block md:w-1/2 xl:w-2/3 pointer-events-none"></div>
 
-        <div class="w-full md:w-1/2 xl:w-1/3 space-y-8 text-center md:text-right flex flex-col md:items-end justify-center md:justify-end h-full pb-20 md:pb-32 xl:pb-40">
+        <div class="w-full md:w-1/2 xl:w-1/3 flex flex-col justify-center md:justify-end items-center md:items-end h-full pb-20 md:pb-32 min-[1921px]:pb-64 text-center md:text-right space-y-6 landscape:items-end landscape:text-right landscape:pb-10">
             
-            <h2 id="hero-title" class="text-5xl md:text-7xl font-bold text-maserati-blanco tracking-tight leading-none opacity-0 translate-y-10">
-                110 Años de <br />
-                <span class="text-maserati-amber">Pura Pasión</span>
+            <h2 class="hero-animate opacity-0 translate-y-10 text-maserati-amber font-bold uppercase tracking-[0.2em] text-sm md:text-base">
+                110 Aniversario
             </h2>
             
-            <p id="hero-text" class="text-lg md:text-xl 2xl:text-lg text-maserati-plata max-w-lg 2xl:max-w-md opacity-0 translate-y-10 leading-relaxed ml-auto">
-                Una experiencia de conducción sin igual.
-                Imagina el rugido de un motor que combina la precisión italiana con clase mundial. 
-                Maserati no es sólo un coche.
+            <h1 class="hero-animate opacity-0 translate-y-10 text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tighter">
+                Maserati <br/>
+                <span class="text-maserati-amber bg-clip-text bg-linear-to-r ">Tridente</span>
+            </h1>
+            
+            <p class="hero-animate opacity-0 translate-y-10 text-maserati-plata text-sm md:text-lg leading-relaxed max-w-md md:ml-auto">
+                La audacia de impulsar el futuro.
+                Imagina el rugido de un motor que combina la precisión italiana con clase mundial.
             </p>
 
-            <div id="hero-btn" class="pt-4 opacity-0 translate-y-10">
+            <div class="hero-animate opacity-0 translate-y-10 pt-4">
                 <a
-                    href="https://www.maserati.com/es/es"
-                    target="_blank"
-                    class="inline-block bg-maserati-azul text-white font-semibold py-4 px-10 rounded-sm uppercase tracking-widest transition-all duration-300 hover:bg-maserati-cian hover:shadow-[0_0_20px_rgba(69,162,158,0.4)]"
+                    href="/eventos"
+                    class="inline-block bg-maserati-azul text-white font-bold py-4 px-10 rounded-sm uppercase tracking-widest transition-all duration-300 hover:bg-maserati-cian hover:shadow-[0_0_30px_rgba(69,162,158,0.4)] active:scale-95 border border-transparent hover:border-white/20"
                 >
-                    Descubrir Más
+                    Descubrir Eventos
                 </a>
             </div>
 
         </div>
     </div>
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
-        <svg class="w-6 h-6 text-maserati-plata opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+    <button 
+        id="scroll-down-btn"
+        aria-label="Deslizar hacia abajo"
+        class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-white opacity-70 hover:opacity-100 hover:text-maserati-amber transition-colors cursor-pointer animate-bounce p-4 landscape:hidden md:landscape:block"
+    >
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7-7-7"></path>
         </svg>
-    </div>
+    </button>
 </section>
 
 <script>
     import { gsap } from "gsap";
     
     document.addEventListener("DOMContentLoaded", () => {
-        const tl = gsap.timeline();
 
-        tl.to("#hero-title", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "+=0.5")
-        .to("#hero-text", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "-=0.8")
-        .to("#hero-btn", { opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" }, "-=0.8");
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+            tl.to(".hero-animate", {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                stagger: 0.2, 
+                delay: 0.5  
+            });
+        });
+
+        const scrollBtn = document.getElementById('scroll-down-btn');
+        scrollBtn?.addEventListener('click', () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
     });
 </script>

@@ -1,0 +1,112 @@
+<div id="cookie-modal" class="fixed inset-0 z-9999 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0 modal-backdrop"></div>
+
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            
+            <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95 modal-panel">
+                
+                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 border-b border-gray-200">
+                    <div class="flex justify-between items-start">
+                        <div class="flex items-center gap-2">
+                            <img src="/assets/images/logos-image/logoMaserati.png" class="h-8 filter invert brightness-0" alt="Maserati">
+                        </div>
+                        <button type="button" class="close-modal text-gray-400 hover:text-gray-500 transition-colors">
+                            <span class="sr-only">Cerrar</span>
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mt-4">Preferencias de Privacidad</h3>
+                    <p class="text-sm text-gray-500 text-justify mt-2">
+                        Usamos cookies para personalizar su experiencia. Puede aceptar todas, rechazarlas o configurarlas a su gusto.
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 px-4 py-4 sm:p-6 space-y-3">
+                    <div class="border border-gray-200 rounded bg-white overflow-hidden">
+                        <button class="w-full flex justify-between items-center p-4 text-left accordion-btn bg-white hover:bg-gray-50 transition-colors">
+                            <span class="font-bold text-gray-800 text-sm">Cookies Estrictamente Necesarias</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded border border-blue-100">SIEMPRE ACTIVAS</span>
+                                <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                        </button>
+                        <div class="hidden px-4 pb-4 text-xs text-gray-500 border-t border-gray-100 pt-2 bg-gray-50/50">
+                            Estas cookies son necesarias para que el sitio web funcione y no se pueden desactivar.
+                        </div>
+                    </div>
+
+                    <div class="border border-gray-200 rounded bg-white overflow-hidden">
+                        <button class="w-full flex justify-between items-center p-4 text-left accordion-btn bg-white hover:bg-gray-50 transition-colors">
+                            <span class="font-bold text-gray-800 text-sm">Cookies de Rendimiento</span>
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" class="accent-maserati-azul w-4 h-4 cursor-pointer" checked>
+                                <svg class="w-4 h-4 text-gray-400 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                        </button>
+                        <div class="hidden px-4 pb-4 text-xs text-gray-500 border-t border-gray-100 pt-2 bg-gray-50/50">
+                            Nos permiten contar las visitas y fuentes de tráfico para medir y mejorar el rendimiento del sitio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 gap-3 border-t border-gray-200">
+                    <button type="button" class="close-modal w-full inline-flex justify-center rounded bg-[#FFD700] px-3 py-3 text-sm font-bold text-black hover:bg-[#F4C430] sm:w-auto uppercase tracking-wide transition-all shadow-sm hover:shadow-md">
+                        Aceptar selección
+                    </button>
+                    <button type="button" class="close-modal mt-3 w-full inline-flex justify-center rounded bg-gray-100 px-3 py-3 text-sm font-bold text-gray-700 hover:bg-gray-200 sm:mt-0 sm:w-auto uppercase tracking-wide transition-colors">
+                        Rechazar todo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('cookie-modal');
+
+    const openBtn = document.getElementById('open-cookies'); 
+    const closeBtns = document.querySelectorAll('.close-modal');
+    const accordions = document.querySelectorAll('.accordion-btn');
+
+    const backdrop = modal?.querySelector('.modal-backdrop');
+    const panel = modal?.querySelector('.modal-panel');
+
+    function openModal() {
+        if(!modal) return;
+        modal.classList.remove('hidden');
+        requestAnimationFrame(() => {
+            backdrop?.classList.remove('opacity-0');
+            panel?.classList.remove('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+        });
+    }
+
+    function closeModal() {
+        if(!modal) return;
+        backdrop?.classList.add('opacity-0');
+        panel?.classList.add('opacity-0', 'translate-y-4', 'sm:translate-y-0', 'sm:scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+
+
+    openBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+    });
+
+    closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+    accordions.forEach(acc => {
+        acc.addEventListener('click', () => {
+            const content = acc.nextElementSibling;
+            const arrow = acc.querySelector('svg');
+            content?.classList.toggle('hidden');
+            arrow?.classList.toggle('rotate-90');
+        });
+    });
+</script>

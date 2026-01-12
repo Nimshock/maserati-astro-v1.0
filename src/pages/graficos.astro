@@ -138,15 +138,16 @@ const transactions = [
     </section>
 </Layout>
 
+
 <script>
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    document.addEventListener("DOMContentLoaded", () => {
-        gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
 
+    document.addEventListener("DOMContentLoaded", () => {
+        
         gsap.context(() => {
-            
             
             gsap.to(".header-animate", {
                 opacity: 1,
@@ -155,7 +156,6 @@ const transactions = [
                 ease: "power2.out"
             });
 
-            
             gsap.to(".dashboard-card", {
                 scrollTrigger: {
                     trigger: ".dashboard-card",
@@ -170,9 +170,8 @@ const transactions = [
 
             const bars = gsap.utils.toArray(".bar-animate");
             
-            
             bars.forEach((item) => {
-                
+
                 const bar = item as HTMLElement; 
 
                 const h = bar.getAttribute("data-height") || "0%";

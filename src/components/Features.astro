@@ -20,65 +20,75 @@ const features = [
 ];
 ---
 
-<section class="bg-maserati-negro py-24 relative z-20">
-    <div class="container mx-auto px-6 text-center">
+<section class="bg-maserati-negro py-16 md:py-24 relative z-20 overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl text-center">
         
-        <h2 class="text-4xl md:text-5xl font-bold text-maserati-blanco mb-4 tracking-tight">
-        Nuestras Características
-        </h2>
-        <p class="text-maserati-plata max-w-2xl mx-auto mb-16 text-lg">
-        Combinando lujo, innovación y rendimiento para crear vehículos exclusivos.
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        {features.map((feature) => (
-            <div class="group flex flex-col items-center">
-            
-            <div class="relative w-64 h-64 rounded-full overflow-hidden border-4 border-maserati-gris shadow-2xl transition-all duration-500 group-hover:border-maserati-azul group-hover:shadow-[0_0_30px_rgba(31,64,104,0.3)]">
-                <img 
-                src={feature.image} 
-                alt={feature.title} 
-                class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                />
-            </div>
-
-            <h3 class="text-2xl font-bold text-maserati-blanco mt-8 mb-3 group-hover:text-maserati-amber transition-colors">
-                {feature.title}
-            </h3>
-            <p class="text-maserati-plata leading-relaxed max-w-xs mx-auto">
-                {feature.description}
+        <div class="mb-12 md:mb-20 scroll-animate">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-maserati-blanco mb-4 tracking-tight">
+                Nuestras Características
+            </h2>
+            <p class="text-maserati-plata max-w-2xl mx-auto text-base md:text-lg lg:text-xl">
+                Combinando lujo, innovación y rendimiento para crear vehículos exclusivos.
             </p>
-            </div>
-        ))}
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-12 xl:gap-20 items-start">
+            {features.map((feature, index) => (
+                <div class="group flex flex-col items-center scroll-animate w-full">
+                    
+                    <div class="relative 
+                                w-56 h-56           sm:w-64 sm:h-64     md:w-52 md:h-52     lg:w-64 lg:h-64     xl:w-72 xl:h-72     2xl:w-80 2xl:h-80   rounded-full overflow-hidden border-4 border-maserati-gris shadow-2xl 
+                                transition-all duration-500 
+                                group-hover:border-maserati-amber group-hover:shadow-[0_0_30px_rgba(31,64,104,0.3)]">
+                        <img 
+                            src={feature.image} 
+                            alt={feature.title}
+                            loading="lazy"
+                            width="320" 
+                            height="320"
+                            class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                        />
+                    </div>
+
+                    <h3 class="text-2xl lg:text-3xl font-bold text-maserati-blanco mt-6 md:mt-8 mb-3 group-hover:text-maserati-amber transition-colors duration-300">
+                        {feature.title}
+                    </h3>
+                    <p class="text-maserati-plata text-sm md:text-base lg:text-lg leading-relaxed max-w-[280px] md:max-w-xs mx-auto">
+                        {feature.description}
+                    </p>
+                </div>
+            ))}
         </div>
 
     </div>
-    </section>
+</section>
 
 <script>
-
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     
     gsap.registerPlugin(ScrollTrigger);
-
     
+
     const elements = document.querySelectorAll('.scroll-animate');
 
-    elements.forEach((el) => {
-        gsap.fromTo(el, 
-            { opacity: 0, y: 50 }, // Estado inicial
-            { 
-                opacity: 1, 
-                y: 0, 
-                duration: 1, 
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 80%", 
-                    toggleActions: "play none none reverse"
+
+    ScrollTrigger.batch(elements, {
+        onEnter: (batch) => {
+            gsap.fromTo(batch, 
+                { opacity: 0, y: 60, scale: 0.9 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1,
+                    duration: 1, 
+                    stagger: 0.2, 
+                    ease: "power3.out",
+                    overwrite: true
                 }
-            }
-        );
+            );
+        },
+        start: "top 85%", 
+        once: true 
     });
 </script>

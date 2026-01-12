@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import EventCard from '../components/EventCard.jsx';
 import { events } from '../data/events.js';
+import CartFloatingButton from '../components/CartFloatingButton';
 
 
 const title = "Eventos Exclusivos | Maserati";
@@ -38,4 +39,6 @@ const title = "Eventos Exclusivos | Maserati";
 
         </div>
     </section>
+
+    <CartFloatingButton client:load />
 </Layout>

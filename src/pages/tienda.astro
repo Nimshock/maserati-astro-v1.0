@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProductGrid from '../components/ProductGrid';
+import CartFloatingButton from '../components/CartFloatingButton';
 
 const title = "Tienda Maserati | Colección Oficial";
 ---
@@ -22,4 +23,6 @@ const title = "Tienda Maserati | Colección Oficial";
 
         </div>
     </section>
+
+    <CartFloatingButton client:load />
 </Layout>
