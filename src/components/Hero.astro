@@ -1,9 +1,11 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 ---
 
-<section id="hero-section" class="relative min-h-screen w-full overflow-hidden flex items-center justify-center bg-maserati-negro landscape:h-auto landscape:min-h-[600px] landscape:py-20">
-    
+<section
+    id="hero-section"
+    class="relative min-h-screen w-full overflow-hidden flex items-center justify-center bg-maserati-negro landscape:h-auto landscape:min-h-[600px] landscape:py-20"
+>
     <div class="absolute inset-0 z-0">
         <video
             src="/assets/videos/gt-110-anniversary-hero-video.mp4"
@@ -12,30 +14,43 @@ import '../styles/global.css';
             autoplay
             loop
             muted
-            playsinline
-        ></video>
-        
-        <div class="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-maserati-negro"></div>
+            playsinline></video>
+
+        <div
+            class="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-maserati-negro"
+        >
+        </div>
     </div>
 
-    <div class="relative z-10 container mx-auto px-6 md:px-12 2xl:px-24 min-[1921px]:max-w-[95%] min-[1921px]:px-40 flex flex-col md:flex-row items-center h-full">
-        
-        <div class="hidden md:block md:w-1/2 xl:w-2/3 pointer-events-none"></div>
+    <div
+        class="relative z-10 container mx-auto px-6 md:px-12 2xl:px-24 min-[1921px]:max-w-[95%] min-[1921px]:px-40 flex flex-col md:flex-row items-center h-full"
+    >
+        <div class="hidden md:block md:w-1/2 xl:w-2/3 pointer-events-none">
+        </div>
 
-        <div class="w-full md:w-1/2 xl:w-1/3 flex flex-col justify-center md:justify-end items-center md:items-end h-full pb-20 md:pb-32 min-[1921px]:pb-64 text-center md:text-right space-y-6 landscape:items-end landscape:text-right landscape:pb-10">
-            
-            <h2 class="hero-animate opacity-0 translate-y-10 text-maserati-amber font-bold uppercase tracking-[0.2em] text-sm md:text-base">
+        <div
+            class="w-full md:w-1/2 xl:w-1/3 flex flex-col justify-center md:justify-center items-center md:items-end h-full pb-20 md:pb-0 md:pt-32 min-[1921px]:pb-64 text-center md:text-right space-y-6 landscape:items-end landscape:text-right landscape:pb-10"
+        >
+            <h2
+                class="hero-animate opacity-0 translate-y-10 text-maserati-amber font-bold uppercase tracking-[0.2em] text-sm md:text-base"
+            >
                 110 Aniversario
             </h2>
-            
-            <h1 class="hero-animate opacity-0 translate-y-10 text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tighter">
-                Maserati <br/>
-                <span class="text-maserati-amber bg-clip-text bg-linear-to-r ">Tridente</span>
+
+            <h1
+                class="hero-animate opacity-0 translate-y-10 text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-none tracking-tighter"
+            >
+                Maserati <br />
+                <span class="text-maserati-amber bg-clip-text bg-linear-to-r"
+                    >Tridente</span
+                >
             </h1>
-            
-            <p class="hero-animate opacity-0 translate-y-10 text-maserati-plata text-sm md:text-lg leading-relaxed max-w-md md:ml-auto">
-                La audacia de impulsar el futuro.
-                Imagina el rugido de un motor que combina la precisión italiana con clase mundial.
+
+            <p
+                class="hero-animate opacity-0 translate-y-10 text-maserati-plata text-sm md:text-lg leading-relaxed max-w-md md:ml-auto"
+            >
+                La audacia de impulsar el futuro. Imagina el rugido de un motor
+                que combina la precisión italiana con clase mundial.
             </p>
 
             <div class="hero-animate opacity-0 translate-y-10 pt-4">
@@ -46,26 +61,33 @@ import '../styles/global.css';
                     Descubrir Eventos
                 </a>
             </div>
-
         </div>
     </div>
 
-    <button 
+    <button
         id="scroll-down-btn"
         aria-label="Deslizar hacia abajo"
         class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-white opacity-70 hover:opacity-100 hover:text-maserati-amber transition-colors cursor-pointer animate-bounce p-4 landscape:hidden md:landscape:block"
     >
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7-7-7"></path>
+        <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7-7-7"></path>
         </svg>
     </button>
 </section>
 
 <script>
     import { gsap } from "gsap";
-    
-    document.addEventListener("DOMContentLoaded", () => {
 
+    document.addEventListener("DOMContentLoaded", () => {
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
@@ -73,16 +95,16 @@ import '../styles/global.css';
                 y: 0,
                 opacity: 1,
                 duration: 1.2,
-                stagger: 0.2, 
-                delay: 0.5  
+                stagger: 0.2,
+                delay: 0.5,
             });
         });
 
-        const scrollBtn = document.getElementById('scroll-down-btn');
-        scrollBtn?.addEventListener('click', () => {
+        const scrollBtn = document.getElementById("scroll-down-btn");
+        scrollBtn?.addEventListener("click", () => {
             window.scrollTo({
                 top: window.innerHeight,
-                behavior: 'smooth'
+                behavior: "smooth",
             });
         });
     });
